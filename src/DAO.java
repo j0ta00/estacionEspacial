@@ -1,19 +1,22 @@
+package DAOImp;
+
+import daoInterface.DataAccessObject;
 
 import java.io.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
 import java.util.Properties;
 
 import static java.sql.DriverManager.getConnection;
 
-public abstract class DAO<T>{
-    //PATH
+public abstract class DAOImp implements DataAccessObject{
+    //PATH estático
     public final String PROPERTIESFILEPATH= "configuracion.properties";
     //Propiedades de la clase DAO
     protected Properties configuracion;
     InputStream is;
+
 
     //Método para iniciar/crear la conexión con la base de datos
     public Statement crearConexion(){
@@ -43,9 +46,4 @@ public abstract class DAO<T>{
             }
             return miStatement;
     }
-    abstract boolean insertar(T objeto);
-    abstract boolean eliminar(T objeto);
-    abstract boolean modificar(T objeto);
-    abstract List<T> obtenerTodosLosObjetos();
-    abstract T obtenerUnObjeto(String Id);
 }
