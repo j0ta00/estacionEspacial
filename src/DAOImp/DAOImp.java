@@ -11,7 +11,7 @@ import java.util.Properties;
 import static java.sql.DriverManager.getConnection;
 
 public abstract class DAOImp implements DataAccessObject{
-    //PATH estático
+    //PATH
     public final String PROPERTIESFILEPATH= "configuracion.properties";
     //Propiedades de la clase DAO
     protected Properties configuracion;
