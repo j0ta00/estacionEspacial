@@ -1,6 +1,4 @@
-package DAOImp;
 
-import daoInterface.DataAccessObject;
 
 import java.io.*;
 import java.sql.Connection;
@@ -10,7 +8,7 @@ import java.util.Properties;
 
 import static java.sql.DriverManager.getConnection;
 
-public abstract class DAOImp implements DataAccessObject{
+public abstract class DAO{
     //PATH estático
     public final String PROPERTIESFILEPATH= "configuracion.properties";
     //Propiedades de la clase DAO
