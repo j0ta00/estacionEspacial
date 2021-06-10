@@ -1,6 +1,8 @@
 <component name="libraryTable">
   <library name="adaptive">
-    <CLASSES />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Desktop/sqljdbc_9.2/enu/mssql-jdbc-9.2.1.jre15.jar!/" />
+    </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="file://$USER_HOME$/Desktop/sqljdbc_9.2/enu/samples/adaptive" />
