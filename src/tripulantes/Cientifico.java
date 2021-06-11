@@ -1,12 +1,16 @@
+package tripulantes;
+
+import tripulantes.Tripulante;
+
 import java.time.LocalDate;
 
-    public class Cientifico extends Tripulante{
+    public class Cientifico extends Tripulante {
         //Atributos
         private String nombreUniversidad;
         private int anhiosDeExperiencia;
 
         //Constructor
-        protected Cientifico(String id,String nombre, String apellidos, LocalDate fechaNacimiento, String idDormitorio,String nombreUniversidad,int anhiosDeExperiencia) {
+        public Cientifico(String id,String nombre, String apellidos, LocalDate fechaNacimiento, String idDormitorio,String nombreUniversidad,int anhiosDeExperiencia) {
             super(id,nombre, apellidos, fechaNacimiento, idDormitorio);
             this.nombreUniversidad=nombreUniversidad;
             this.anhiosDeExperiencia=anhiosDeExperiencia;

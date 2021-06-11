@@ -1,3 +1,5 @@
+package tripulantes;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -11,7 +13,7 @@ public abstract class Tripulante{
 
     //Constructor
     protected Tripulante(String id,String nombre, String apellidos, LocalDate fechaNacimiento, String idDormitorio) {
-        if(id==null) {
+        if(id==null || id.length()<36) {
             this.id = UUID.randomUUID().toString();
         }else {
             this.id = id;

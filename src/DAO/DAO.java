@@ -1,5 +1,5 @@
-
-
+package DAO;
+import excepciones.DAOException;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -12,7 +12,7 @@ import static java.sql.DriverManager.getConnection;
 public abstract class DAO<T>{
     //PATH
     public final String PROPERTIESFILEPATH= "configuracion.properties";
-    //Propiedades de la clase DAO
+    //Propiedades de la clase
     protected Properties configuracion;
     private InputStream is;
 
@@ -44,9 +44,9 @@ public abstract class DAO<T>{
             return miConexion;
     }
 
-    public abstract void insertarObjeto(T objeto) throws DAOException;
-    public abstract void modificarObjeto(T objeto) throws DAOException;
-    public abstract void eliminarObjeto(T objeto) throws DAOException;
-    public abstract List<T> obtenerTodosLosObjetos() throws DAOException;
-    public abstract T obtenerObjeto(String id) throws DAOException;
+    public abstract void insertarObjeto(T objeto) throws Throwable;//pongo que lanza throwable porque es una excepción más general pues dentro de cada clase que sobreescirba dicho método lanzará una excepción diferente
+    public abstract void modificarObjeto(T objeto) throws Throwable;
+    public abstract void eliminarObjeto(T objeto) throws Throwable;
+    public abstract List<T> obtenerTodosLosObjetos() throws Throwable;
+    public abstract T obtenerObjeto(String id) throws Throwable;
 }
