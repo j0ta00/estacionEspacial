@@ -2,9 +2,6 @@ package DAO;
 
 import excepciones.DAOException;
 import tripulantes.Cientifico;
-import tripulantes.Tripulante;
-
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -120,14 +117,14 @@ public class DAOCientifico extends DAOTripulante{
      * Postcondiciónn:Se trata de una función que devuelve un objeto asociado a su nombre
      * @author: jjmza
      * @param id
-     * @return tripulantes.Cientifico cientifico
+     * @return cientifico
      * @throws DAOException
      */
     @Override
     public Cientifico obtenerObjeto(String id) throws DAOException {
         ResultSet rs=null;
         ResultSet rs2=null;
-        Cientifico c=null;
+        Cientifico cientifico=null;
         String[] fechaNacimiento;
         try{
             miStatement=miConexion.prepareStatement(OBTENERTRIPULANTE);
@@ -137,12 +134,12 @@ public class DAOCientifico extends DAOTripulante{
             rs=miStatement.executeQuery();
             rs2=miStatement2.executeQuery();
             while(rs.next() && rs2.next()){
-                c = crearCientifico(rs,rs2);
+                cientifico = crearCientifico(rs,rs2);
             }
         }catch(SQLException e){
             throw new DAOException();
         }
-        return c;
+        return cientifico;
     }
 
     /**
