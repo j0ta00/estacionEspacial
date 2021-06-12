@@ -12,7 +12,7 @@ public abstract class Tripulante{
     private String idDormitorio;
 
     //Constructor
-    protected Tripulante(String id,String nombre, String apellidos, LocalDate fechaNacimiento, String idDormitorio) {
+    protected Tripulante(String id,String nombre, String apellidos, LocalDate fechaNacimiento,String  idDormitorio) {
         if(id==null || id.length()<36) {
             this.id = UUID.randomUUID().toString();
         }else {
@@ -28,8 +28,6 @@ public abstract class Tripulante{
     public String getId() {
         return id;
     }
-
-    public void setId(String id){this.id=id;}
 
     public String getNombre() {
         return nombre;

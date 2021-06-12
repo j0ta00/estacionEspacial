@@ -6,15 +6,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public abstract class DAOTripulante extends  DAO<Tripulante>{
+public abstract class DAOTripulante extends  DAO<Tripulante>{// es abstracta ya que los métodos  de obtener no puede implementarlos ya que la clase tripulante es abstracta y no puede devolver instacias de dicha clase así las hijas implementarán dichos métodos
     //CONSULTAS
     public static final String INSERTARTRIPULANTE="INSERT INTO Tripulantes(IdTripulante,Nombre,Apellidos,FechaNacimiento,IdDormitorio) VALUES (?,?,?,?,?)";
     public static final String MODIFICARTRIPULANTE="UPDATE Tripulantes SET IdTripulante=?,Nombre=?,Apellidos=?,FechaNacimiento=?,IdDormitorio=? WHERE IdTripulante=?";
     public static final String ELIMINARTRIPULANTE="DELETE FROM Tripulantes WHERE IdTripulante=?";
     public static final String OBTENERTODOSELEMENTOSTRIPULANTES="SELECT*FROM Tripulantes";//esta consulta y la de abajo pertenecen a tripulante pero se usarán en los hijos
     public static final String OBTENERTRIPULANTE="SELECT*FROM Tripulantes WHERE IdTripulante=?";
-    //Atributo
-    protected Connection miConexion=super.crearConexion();
+    //Atributos
     protected PreparedStatement miStatement;
     protected PreparedStatement miStatement2;
 
@@ -28,7 +27,7 @@ public abstract class DAOTripulante extends  DAO<Tripulante>{
      * @throws SQLException
      */
     @Override
-    public void insertarObjeto(Tripulante objeto) throws SQLException {
+    public void insertarObjeto(Tripulante objeto) throws SQLException {//el statement se cierra en las hijas
             miStatement = preparedStatementTripulantes(objeto, INSERTARTRIPULANTE);
             miStatement.executeUpdate();
     }
@@ -42,7 +41,7 @@ public abstract class DAOTripulante extends  DAO<Tripulante>{
      * @param objeto,consulta
      * @throws SQLException
      */
-    public PreparedStatement preparedStatementTripulantes(Tripulante objeto, String consulta) throws SQLException {
+    public PreparedStatement preparedStatementTripulantes(Tripulante objeto, String consulta) throws SQLException {//el statement se cierra en las hijas
         miStatement=miConexion.prepareStatement(consulta);
         miStatement.setString(1,objeto.getId());
         miStatement.setString(2,objeto.getNombre());
@@ -65,11 +64,10 @@ public abstract class DAOTripulante extends  DAO<Tripulante>{
      * @throws SQLException
      */
     @Override
-    public void modificarObjeto(Tripulante objeto) throws SQLException {
+    public void modificarObjeto(Tripulante objeto) throws SQLException {//el statement se cierra en las hijas
             miStatement = preparedStatementTripulantes(objeto, MODIFICARTRIPULANTE);
             miStatement.setString(6,objeto.getId());
             miStatement.executeUpdate();
-
     }
     /**
      * Cabecera: boolean eliminarObjeto(Tripulante objeto)
@@ -88,6 +86,14 @@ public abstract class DAOTripulante extends  DAO<Tripulante>{
             miStatement.executeUpdate();
         }catch(SQLException e){
             throw new DAOException();
+        }finally{
+            if(miStatement!=null){
+                try {
+                    miStatement.close();
+                } catch (SQLException e) {
+                    throw new DAOException();
+                }
+            }
         }
     }
 }

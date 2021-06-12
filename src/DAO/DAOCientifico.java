@@ -19,7 +19,7 @@ public class DAOCientifico extends DAOTripulante{
     //que devuelven instacias de Tripulante y al ser una clase abstracta no podía hacer eso,
 
     /**
-     * Cabecera:public boolean  insertarObjeto(tripulantes.Cientifico objeto)
+     * Cabecera:public boolean  insertarObjeto(Cientifico objeto)
      * Proposito:Método que nos permite insertar un objeto cientifíco en nuestra base de datos
      * Precondición:El objeto científico no debe ser nulo
      * Postcondiciónn:Se trata de un procedimiento que inserta un elemento en la base de datos
@@ -34,10 +34,18 @@ public class DAOCientifico extends DAOTripulante{
             miStatement.executeUpdate();
         } catch (SQLException e){
             throw new DAOException();
+        }finally{
+            if(miStatement!=null){
+                try {
+                    miStatement.close();
+                } catch (SQLException e) {
+                    throw new DAOException();
+                }
+            }
         }
     }
     /**
-     * Cabecera: boolean modificarObjeto(String id)
+     * Cabecera: boolean modificarObjeto(Cientifico objeto)
      * Propsito:Método que nos permite modificar un elemento de nuestra base de datos
      * Precondición:La cadena id no debe ser nula
      * Postcondiciónn:Se trata de un procedimiento que modifica el estado de la base de datos
@@ -53,12 +61,20 @@ public class DAOCientifico extends DAOTripulante{
             miStatement.executeUpdate();
         }catch(SQLException e){
             throw  new DAOException();
+        }finally{
+            if(miStatement!=null){
+                try {
+                    miStatement.close();
+                } catch (SQLException e) {
+                    throw new DAOException();
+                }
+            }
         }
     }
 
 
     /**
-     * Cabecera:  public PreparedStatement preparedStatementCientificos(PreparedStatement miStatement, tripulantes.Cientifico objeto, String consulta, boolean idNecesario)
+     * Cabecera:  public PreparedStatement preparedStatementCientificos(Cientifico objeto, String consulta, boolean idNecesario)
      * Proposito:Se trata de un método que nos devulve una consulta preparada llena con los elementos del objeto que le hemos pasado por parámetros
      * Precondición:Ninguno de los elementos pasados por parámetros debe ser nulo
      * Postcondiciónn:Se trata de una función que devulve un objeto PreparedStatement
@@ -82,6 +98,7 @@ public class DAOCientifico extends DAOTripulante{
 
     /**
      * Cabecera: List obtenerTodosLosObjetos()
+     * Proposito:Se trata de un método que obtiene una lista de objeto de nuestra base de datos
      * Precondición:Ninguna
      * Postcondiciónn:Se trata de una función que devuelve un objeto tipo List asociado a su nombre
      * @author: jjmza
@@ -106,6 +123,14 @@ public class DAOCientifico extends DAOTripulante{
             }
         }catch(SQLException e){
             throw new DAOException();
+        }finally{
+            if(miStatement!=null){
+                try {
+                    miStatement.close();
+                } catch (SQLException e) {
+                    throw new DAOException();
+                }
+            }
         }
         return cientificos;
     }
@@ -113,6 +138,7 @@ public class DAOCientifico extends DAOTripulante{
 
     /**
      * Cabecera:tripulantes.Cientifico obtenerObjeto(String id)
+     * Proposito:Se trata de un método que obtiene un objeto de nuestra base de datos
      * Precondición:La cadena id no debe ser nula
      * Postcondiciónn:Se trata de una función que devuelve un objeto asociado a su nombre
      * @author: jjmza
@@ -138,12 +164,20 @@ public class DAOCientifico extends DAOTripulante{
             }
         }catch(SQLException e){
             throw new DAOException();
+        }finally{
+            if(miStatement!=null){
+                try {
+                    miStatement.close();
+                } catch (SQLException e) {
+                    throw new DAOException();
+                }
+            }
         }
         return cientifico;
     }
 
     /**
-     * Cabecera:public tripulantes.Cientifico crearCientifico(PreparedStatement miStatement,ResultSet rs,ResultSet rs2, PreparedStatement miStatement2)
+     * Cabecera:public tripulantes.Cientifico crearCientifico(ResultSet rs,ResultSet rs2)
      * Proposito:Este método crea el objeto cientifíco con los datos que le pasemos por parámetros
      * Precondición:Ninguno de los elementos pasados por parámetros debe ser nulo
      * Postcondición:Se trata de una función que devuelve un objeto cientifico asociado a su nombre

@@ -18,7 +18,7 @@ public class DAOIngeniero extends DAOTripulante{
     //Todos los métodos de esta clase sobrecargan la de su clase padre DAOTripulante,excepto los métodos de obtenr objetos y obtener todos lso objetos pues son métodos
     //que devuelven instacias de Tripulante y al ser una clase abstracta no podía hacer eso,
     /**
-     * Cabecera:public boolean  insertarObjeto(tripulantes.Cientifico objeto)
+     * Cabecera:public boolean  insertarObjeto(Ingeniero objeto)
      * Proposito:Método que nos permite insertar un objeto cientifíco en nuestra base de datos
      * Precondición:El objeto científico no debe ser nulo
      * Postcondiciónn:Se trata de un procedimiento que inserta un elemento en la base de datos
@@ -33,10 +33,18 @@ public class DAOIngeniero extends DAOTripulante{
             miStatement.executeUpdate();
         } catch (SQLException e){
             throw new DAOException();
+        }finally{
+            if(miStatement!=null){
+                try {
+                    miStatement.close();
+                } catch (SQLException e) {
+                    throw new DAOException();
+                }
+            }
         }
     }
     /**
-     * Cabecera: boolean modificarObjeto(String id)
+     * Cabecera: boolean modificarObjeto(Ingeniero objeto)
      * Propsito:Método que nos permite modificar un elemento de nuestra base de datos
      * Precondición:La cadena id no debe ser nula
      * Postcondiciónn:Se trata de un procedimiento que modifica el estado de la base de datos
@@ -52,6 +60,14 @@ public class DAOIngeniero extends DAOTripulante{
             miStatement.executeUpdate();
         }catch(SQLException e){
             throw  new DAOException();
+        }finally{
+            if(miStatement!=null){
+                try {
+                    miStatement.close();
+                } catch (SQLException e) {
+                    throw new DAOException();
+                }
+            }
         }
     }
 
@@ -78,6 +94,7 @@ public class DAOIngeniero extends DAOTripulante{
 
     /**
      * Cabecera: List obtenerTodosLosObjetos()
+     * Proposito:Se trata de un método que obtiene una lista de objeto de nuestra base de datos
      * Precondición:Ninguna
      * Postcondiciónn:Se trata de una función que devuelve un objeto tipo List asociado a su nombre
      * @author: jjmza
@@ -102,6 +119,14 @@ public class DAOIngeniero extends DAOTripulante{
             }
         }catch(SQLException e){
             throw new DAOException();
+        }finally{
+            if(miStatement!=null){
+                try {
+                    miStatement.close();
+                } catch (SQLException e) {
+                    throw new DAOException();
+                }
+            }
         }
         return ingenieros;
     }
@@ -109,6 +134,7 @@ public class DAOIngeniero extends DAOTripulante{
 
     /**
      * Cabecera:public Ingeniero obtenerObjeto(String id)
+     * Proposito:Se trata de un método que obtiene un objeto de nuestra base de datos
      * Precondición:La cadena id no debe ser nula
      * Postcondiciónn:Se trata de una función que devuelve un objeto asociado a su nombre
      * @author: jjmza
@@ -134,6 +160,14 @@ public class DAOIngeniero extends DAOTripulante{
             }
         }catch(SQLException e){
             throw new DAOException();
+        }finally{
+            if(miStatement!=null){
+                try {
+                    miStatement.close();
+                } catch (SQLException e) {
+                    throw new DAOException();
+                }
+            }
         }
         return ingeniero;
     }

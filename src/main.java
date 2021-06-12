@@ -1,6 +1,8 @@
 import DAO.DAOCientifico;
 import DAO.DAOIngeniero;
+import DAO.DAOProvision;
 import excepciones.DAOException;
+import provision.Provision;
 import tripulantes.Cientifico;
 import tripulantes.Ingeniero;
 
@@ -14,20 +16,21 @@ public class main{
 
 
     public static void main(String[] args) {
-        List<Ingeniero> ingenieros = new LinkedList<>();
-        Ingeniero h=null;
-        Ingeniero c=new Ingeniero(null,"Junajo","sinsaho", LocalDate.of(2000,07,06),"NULL","NULLAZO");
-        Ingeniero b=new Ingeniero(null,"PELETEIROS","sinsaho", LocalDate.of(2000,07,06),"NULL","NULLAZO");
-        DAOIngeniero d=new DAOIngeniero();
+        List<Provision> provisiones = new LinkedList<>();
+        Provision h=null;
+        Provision c=new Provision(null,"Junajo",3);
+        Provision b=new Provision(null,"PELETEIROS",2);
+        DAOProvision  d=new DAOProvision();
         try {
             d.insertarObjeto(c);
-            d.eliminarObjeto(c);
             h=d.obtenerObjeto(c.getId());
-            ingenieros=d.obtenerTodosLosObjetos();
-            ingenieros.forEach(x-> System.out.println(x.getId()));
+            provisiones=d.obtenerTodosLosObjetos();
+            provisiones.forEach(x-> System.out.println(x.getId()));
             System.out.println(h.getId());
         } catch (DAOException e) {
             e.printStackTrace();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
         }
     }
 
